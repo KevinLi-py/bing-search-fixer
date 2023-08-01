@@ -1,11 +1,11 @@
 {
   "addonName": {
-    "message": "Google Search Fixer"
+    "message": "Bing Search Fixer"
   },
   "addonDescription": {
-    "message": "Override the user-agent string presented to Google Search pages to receive the search experience shown to Chrome."
+    "message": "Override the user-agent string presented to Bing Search pages to receive the search experience shown to Edge."
   },
   "addonAuthorsList": {
-    "message": "Thomas Wisniewski <twisniewski@mozilla.com>"
+    "message": "Thomas Wisniewski <twisniewski@mozilla.com>; Unnamed Py <unnamed_py@outlook.com>"
   }
 }

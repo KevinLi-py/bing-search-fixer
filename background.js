@@ -5,12 +5,12 @@
 // Override the user-agent HTTP headers sent to Google Search
 
 // Keep in sync with include_globs in manifest.json
-const GoogleSearchTLDs = /^https?:\/\/(www|maps)\.google\./;
+const BingSearchTLDs = /^https?:\/\/(www|maps)\.bing\./;
 
-const GoogleMatchPatterns = browser.runtime.getManifest().content_scripts[0].matches;
+const BingMatchPatterns = browser.runtime.getManifest().content_scripts[0].matches;
 
-function rewriteUserAgentForGoogleSearchTLDs(e) {
-  if (e.url.match(GoogleSearchTLDs)) {
+function rewriteUserAgentForBingSearchTLDs(e) {
+  if (e.url.match(BingSearchTLDs)) {
     for (let header of e.requestHeaders) {
       if (header.name.toLowerCase() === "user-agent") {
         header.value = getUserAgentOverride(header.value);
@@ -21,25 +21,25 @@ function rewriteUserAgentForGoogleSearchTLDs(e) {
 }
 
 browser.webRequest.onBeforeSendHeaders.addListener(
-  rewriteUserAgentForGoogleSearchTLDs,
-  {urls: GoogleMatchPatterns},
+  rewriteUserAgentForBingSearchTLDs,
+  {urls: BingMatchPatterns},
   ["blocking", "requestHeaders"]
 );
 
-// Block the Google serviceworker, because it is currently causing strange issues.
+// // Block the Google serviceworker, because it is currently causing strange issues.
 
-function blockGoogleServiceWorker(e) {
-  if (e.url.match(GoogleSearchTLDs)) {
-    return {cancel: true};
-  }
-}
+// function blockGoogleServiceWorker(e) {
+//   if (e.url.match(BingSearchTLDs)) {
+//     return {cancel: true};
+//   }
+// }
 
-browser.webRequest.onBeforeRequest.addListener(
-  blockGoogleServiceWorker,
-  {
-    // Replace "/*" path prefix in match pattern with "/serviceworker*".
-    urls: GoogleMatchPatterns.map(s => s.replace("/*", "/serviceworker*")),
-    types: ["script"],
-  },
-  ["blocking"]
-);
+// browser.webRequest.onBeforeRequest.addListener(
+//   blockGoogleServiceWorker,
+//   {
+//     // Replace "/*" path prefix in match pattern with "/serviceworker*".
+//     urls: BingMatchPatterns.map(s => s.replace("/*", "/serviceworker*")),
+//     types: ["script"],
+//   },
+//   ["blocking"]
+// );

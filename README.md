@@ -1,4 +1,4 @@
-Override the user-agent string presented to Google Search pages to receive the
-search experience shown to Chrome on Firefox for mobile / tablet.
+Override the user-agent string presented to Bing Search pages to receive the
+search experience shown to Edge on Firefox for android.
 
-https://addons.mozilla.org/en-US/android/addon/google-search-fixer/
+Forked from https://addons.mozilla.org/en-US/android/addon/google-search-fixer/
